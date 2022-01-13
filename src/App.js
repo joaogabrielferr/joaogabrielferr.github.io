@@ -15,68 +15,80 @@ function App() {
   const svg = useRef();
 
   useEffect(() => {
-    // svg.current.style.backgroundColor = "#111";
-    // svg.current.style.borderRadius = "0.3vw";
-    // svg.current.style.width = "99vw";
-    // svg.current.style.height = "99vh";
+    svg.current.style.backgroundColor = "#161625";
+    svg.current.style.borderRadius = "0.3vw";
+    svg.current.style.width = "99vw";
+    svg.current.style.height = "99vh";
 
-    // let linha = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    // linha.setAttribute("x1", `30`);
-    // linha.setAttribute("y1", `40`);
-    // linha.setAttribute("x2", `30`);
-    // linha.setAttribute("y2", `45`);
-    // linha.style.stroke = "#eee";
-    // linha.style.strokeWidth = "0.01vw";
+    let textoroot = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    textoroot.setAttributeNS(null, "x", `45`);
+    textoroot.setAttributeNS(null, "y", `38`);
+    textoroot.setAttributeNS(
+      null,
+      "style",
+      "text-anchor:middle; fill:#a8a8a8 ;font-size:0.3vw; font-weight:bold; font-family:Source Code Pro; dy=.3em"
+    );
+    textoroot.textContent = `{JG}`;
+    textoroot.setAttribute("class", "texto");
+    svg.current.appendChild(textoroot);
 
-    // svg.current.append(linha);
+    let linha = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    linha.setAttribute("x1", `30`);
+    linha.setAttribute("y1", `40`);
+    linha.setAttribute("x2", `30`);
+    linha.setAttribute("y2", `45`);
+    linha.style.stroke = "#a8a8a8";
+    linha.style.strokeWidth = "0.01vw";
 
-    // linha = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    // linha.setAttribute("x1", `30`);
-    // linha.setAttribute("y1", `45`);
-    // linha.setAttribute("x2", `60`);
-    // linha.setAttribute("y2", `45`);
-    // linha.style.stroke = "#eee";
-    // linha.style.strokeWidth = "0.01vw";
+    svg.current.append(linha);
 
-    // svg.current.append(linha);
+    linha = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    linha.setAttribute("x1", `30`);
+    linha.setAttribute("y1", `45`);
+    linha.setAttribute("x2", `60`);
+    linha.setAttribute("y2", `45`);
+    linha.style.stroke = "#a8a8a8";
+    linha.style.strokeWidth = "0.01vw";
 
-    // linha = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    // linha.setAttribute("x1", `60`);
-    // linha.setAttribute("y1", `45`);
-    // linha.setAttribute("x2", `60`);
-    // linha.setAttribute("y2", `40`);
-    // linha.style.stroke = "#eee";
-    // linha.style.strokeWidth = "0.01vw";
+    svg.current.append(linha);
 
-    // svg.current.append(linha);
+    linha = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    linha.setAttribute("x1", `60`);
+    linha.setAttribute("y1", `45`);
+    linha.setAttribute("x2", `60`);
+    linha.setAttribute("y2", `40`);
+    linha.style.stroke = "#a8a8a8";
+    linha.style.strokeWidth = "0.01vw";
 
-    // linha = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    // linha.setAttribute("x1", `60`);
-    // linha.setAttribute("y1", `40`);
-    // linha.setAttribute("x2", `30`);
-    // linha.setAttribute("y2", `40`);
-    // linha.style.stroke = "#eee";
-    // linha.style.strokeWidth = "0.01vw";
+    svg.current.append(linha);
 
-    // svg.current.append(linha);
+    linha = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    linha.setAttribute("x1", `60`);
+    linha.setAttribute("y1", `40`);
+    linha.setAttribute("x2", `30`);
+    linha.setAttribute("y2", `40`);
+    linha.style.stroke = "#a8a8a8";
+    linha.style.strokeWidth = "0.01vw";
 
-    // linha = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    // linha.setAttribute("x1", `31`);
-    // linha.setAttribute("y1", `42.5`);
-    // linha.setAttribute("x2", `32`);
-    // linha.setAttribute("y2", `42.5`);
-    // linha.style.stroke = "#eee";
-    // linha.style.strokeWidth = "0.2vw";
-    // linha.setAttribute("id","loader");
+    svg.current.append(linha);
 
-    // svg.current.append(linha);
+    linha = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    linha.setAttribute("x1", `31`);
+    linha.setAttribute("y1", `42.5`);
+    linha.setAttribute("x2", `32`);
+    linha.setAttribute("y2", `42.5`);
+    linha.style.stroke = "#a8a8a8";
+    linha.style.strokeWidth = "0.2vw";
+    linha.setAttribute("id","loader");
 
-    // const linha2 = document.getElementById("loader");
-    // linha2.setAttribute("x2","59")
+    svg.current.append(linha);
 
-    // setTimeout(() => {
-    //     setLoaded(true);
-    // }, 1150);
+    const linha2 = document.getElementById("loader");
+    linha2.setAttribute("x2","59")
+
+    setTimeout(() => {
+        setLoaded(true);
+    }, 1150);
 
   
     window.addEventListener("scroll",()=>{
@@ -114,7 +126,7 @@ function App() {
 
   return (
     <div className="App">
-      {loaded === true ? (
+      {loaded === false ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           id="svg"
