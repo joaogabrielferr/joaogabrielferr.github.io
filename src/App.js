@@ -1,9 +1,22 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { useEffect, useRef, useState } from "react";
 import pdf from "./Curriculo_JoaoGabrielFerreira.pdf";
-import imgds from "./bstimage.PNG";
+import bst from "./bstimage.PNG";
+import linkedlist from './linkedlistimage.PNG'
+import stackimage from './stackimage.PNG'
 import taskis from "./taskis.PNG";
+import taskis1 from './taskis1.PNG'
+import taskis2 from './taskis2.PNG'
+import taskis3 from './taskis3.PNG'
+import taskis4 from './taskis4.PNG'
+import taskis5 from './taskis5.PNG'
+import locomoc1 from './locomoc1.PNG'
+import locomoc2 from './locomoc2.PNG'
+import locomoc3 from './locomoc3.PNG'
+import AliceCarousel from "react-alice-carousel";
+import "react-alice-carousel/lib/alice-carousel.css";
+import Projeto from "./Componentes/Projeto";
+import Greetings from "./Componentes/Greetings";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -11,105 +24,52 @@ function App() {
   const abre = "{";
   const fecha = "}";
   const [showNavbar, setShowNavbar] = useState(false);
-
   const svg = useRef();
 
+  const handleDragStart = (e) => e.preventDefault();
+
+  const imagensVisualizador = [
+    <img src={bst} onDragStart={handleDragStart} role="presentation" />,
+    <img src={linkedlist} onDragStart={handleDragStart} role="presentation" />,
+    <img src={stackimage} onDragStart={handleDragStart} role="presentation" />,
+  ];
+  const imagensTaskis = [
+    <img src={taskis1} onDragStart={handleDragStart} role="presentation" />,
+    <img src={taskis2} onDragStart={handleDragStart} role="presentation" />,
+    <img src={taskis3} onDragStart={handleDragStart} role="presentation" />,
+    <img src={taskis4} onDragStart={handleDragStart} role="presentation" />,
+    <img src={taskis5} onDragStart={handleDragStart} role="presentation" />,
+  ];
+  const imagensLocoMoc = [
+    <img src={locomoc1} onDragStart={handleDragStart} role="presentation" />,
+    <img src={locomoc2} onDragStart={handleDragStart} role="presentation" />,
+    <img src={locomoc3} onDragStart={handleDragStart} role="presentation" />,
+  ];
+
   useEffect(() => {
-    svg.current.style.backgroundColor = "#161625";
+    svg.current.style.backgroundColor = "#111c5c";
     svg.current.style.borderRadius = "0.3vw";
     svg.current.style.width = "99vw";
     svg.current.style.height = "99vh";
-
     let textoroot = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    textoroot.setAttributeNS(null, "x", `45`);
-    textoroot.setAttributeNS(null, "y", `38`);
+    textoroot.setAttributeNS(null, "x", `50`);
+    textoroot.setAttributeNS(null, "y", `45`);
     textoroot.setAttributeNS(
       null,
       "style",
       "text-anchor:middle; fill:#a8a8a8 ;font-size:0.3vw; font-weight:bold; font-family:Source Code Pro; dy=.3em"
     );
     textoroot.textContent = `{JG}`;
-    textoroot.setAttribute("class", "texto");
+    textoroot.setAttribute("id", "texto-svg");
+
     svg.current.appendChild(textoroot);
 
-    let linha = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    linha.setAttribute("x1", `30`);
-    linha.setAttribute("y1", `40`);
-    linha.setAttribute("x2", `30`);
-    linha.setAttribute("y2", `45`);
-    linha.style.stroke = "#a8a8a8";
-    linha.style.strokeWidth = "0.01vw";
 
-    svg.current.append(linha);
-
-    linha = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    linha.setAttribute("x1", `30`);
-    linha.setAttribute("y1", `45`);
-    linha.setAttribute("x2", `60`);
-    linha.setAttribute("y2", `45`);
-    linha.style.stroke = "#a8a8a8";
-    linha.style.strokeWidth = "0.01vw";
-
-    svg.current.append(linha);
-
-    linha = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    linha.setAttribute("x1", `60`);
-    linha.setAttribute("y1", `45`);
-    linha.setAttribute("x2", `60`);
-    linha.setAttribute("y2", `40`);
-    linha.style.stroke = "#a8a8a8";
-    linha.style.strokeWidth = "0.01vw";
-
-    svg.current.append(linha);
-
-    linha = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    linha.setAttribute("x1", `60`);
-    linha.setAttribute("y1", `40`);
-    linha.setAttribute("x2", `30`);
-    linha.setAttribute("y2", `40`);
-    linha.style.stroke = "#a8a8a8";
-    linha.style.strokeWidth = "0.01vw";
-
-    svg.current.append(linha);
-
-    linha = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    linha.setAttribute("x1", `31`);
-    linha.setAttribute("y1", `42.5`);
-    linha.setAttribute("x2", `32`);
-    linha.setAttribute("y2", `42.5`);
-    linha.style.stroke = "#a8a8a8";
-    linha.style.strokeWidth = "0.2vw";
-    linha.setAttribute("id","loader");
-
-    svg.current.append(linha);
-
-    const linha2 = document.getElementById("loader");
-    linha2.setAttribute("x2","59")
 
     setTimeout(() => {
         setLoaded(true);
-    }, 1150);
+    }, 1000);
 
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 200) {
-        setShowNavbar(true);
-      } else {
-        setShowNavbar(false);
-      }
-
-      const secoes = document.querySelectorAll(".reveal");
-      for (let i = 0; i < secoes.length; i++) {
-        let windowHeight = window.innerHeight;
-        let top = secoes[i].getBoundingClientRect().top;
-        let ponto = 150;
-
-        if (top < windowHeight - ponto) {
-          secoes[i].classList.add("active");
-        } else {
-          secoes[i].classList.remove("active");
-        }
-      }
-    });
   }, []);
 
   return (
@@ -125,390 +85,76 @@ function App() {
         <>
           <div id="header">
             <div id="inner-header">
-              <a href="">
-                <div id="logo">
-                  {abre}JG{fecha}
-                </div>
-              </a>
-              &nbsp;
-              <div id="nav-top">
-                <div className="nav-item-top">
-                  <a href="#sobre">SOBRE</a>
-                </div>
-                <div className="nav-item-top">
-                  <a href="#skills">SKILLS</a>
-                </div>
-                <div className="nav-item-top">
-                  <a href="#projetos">PROJETOS</a>
-                </div>
-                <div className="nav-item-top">
-                  <a href="#contato">CONTATO</a>
-                </div>
-              </div>
-              {/* <div style={{display:"flex"}}>
-            <div className='social-hello'><a href="https://github.com/joaogabrielferr" target={"_blank"}><i className="fab fa-github"></i>&nbsp;</a></div>
-            <div className='social-hello'><a href="https://www.linkedin.com/in/joaogabrielferr/" target={"_blank"}><i className="fab fa-linkedin"></i>&nbsp;</a></div>
-            <div className='social-hello'><a href="mailto:joaogabrielferr@gmail.com" target={"_blank"}><i class="far fa-envelope"></i>&nbsp;joaogabrielferr@gmail.com</a></div> 
-            </div> */}
+              <h2>
+                {abre}JG{fecha}
+              </h2>
+              <p>joaogabrielferr@gmail.com</p>
             </div>
           </div>
 
-          <div id="hello">
-            <p></p>
-            <div>
-              <p>&nbsp;Olá,meu nome é</p>
-              <h1>João Gabriel,</h1>
+          <Greetings></Greetings>
 
-              <div id="hello-h3-1">
-                <h3>Desenvolvedor de Software e</h3>
-              </div>
-              <div id="hello-h3-2">
-                <h3>acadêmico de Ciência da Computação.</h3>
-              </div>
+          <div id="projetos">
+            <div id="titulo">Projetos</div>
 
-              <div id="info">
-                <p></p>
-                Gosto de desenvolvimento de software em geral, tendo
-                desenvolvido principalmente aplicações para a web. Também gosto
-                de programação competitiva e machine learning.
-                <br />
-                <br />
-                <br />
-                <div>
-                  {" "}
-                  <a href={pdf} id="curriculo-hello" target={"_blank"}>
-                    Visualizar Currículo
-                  </a>
-                </div>
-                <br />
-                <br />
-              </div>
-            </div>
-            <p></p>
-            <p></p>
-          </div>
+            <div className="vertical-1vh"></div>
 
-          <div id="sociais">
-            <p></p>
-            <div className="nav-item">
-              <a href="https://github.com/joaogabrielferr" target={"_blank"}>
-                <i className="fab fa-github"></i>
-              </a>
-            </div>
-            <div className="nav-item">
-              <a
-                href="https://www.linkedin.com/in/joaogabrielferr/"
-                target={"_blank"}
-              >
-                <i className="fab fa-linkedin-in"></i>
-              </a>
-            </div>
-            <div className="nav-item">
-              <a href="mailto:joaogabrielferr@gmail.com" target={"_blank"}>
-                <i className="far fa-envelope"></i>
-              </a>
-            </div>
-            {/* <div className="nav-item"><a href="#sobre">Sobre</a></div>
-            <div className="nav-item"><a href="#skills">Skills</a></div>
-            <div className="nav-item"><a href="#projetos">Projetos</a></div>
-            <div className="nav-item"><a href="#projetos">Contato</a></div> */}
-          </div>
+            <div id="inner-projetos">
+              
+              <Projeto 
+                titulo = {"Visualizador de Estruturas de Dados"}
+                stack = {"ReactJs - HTML5 - CSS3 - Scalable Vector Graphics"}
+                bulletPoints = {
+                  [" Ferramenta online para visualizar as operações das principais estruturas de dados com o objetivo de facilitar o aprendizado delas.",
+                  "O principal objetivo é visualizar como as operações modificam a estrutura de dados, mantendo suas propriedades.",  
+                  "Todas as operações são visualizadas com animações, que foram criadas com Scalable Vector Graphics e CSS3. A aplicação foi criada com ReactJs.",
+                  "Foram implementadas Árvore de Busca Binária, Lista Encadiada e Pilha. Estão em desenvolvimento Fila e Heap."]
+                }
+                items = {imagensVisualizador}
+                website = {"https://github.com/joaogabrielferr/data-structures-visualizer"}
+                github = {"https://joaogabrielferr.github.io/data-structures-visualizer/"} 
+              ></Projeto>
+              
+              
+              <div className="vertical-5vh"></div>
+              
+              
+              <Projeto 
+                titulo = {"Gerenciador de Tarefas Full Stack"}
+                stack = {"ReactJs - Node.js - Express.js - MongoDB"}
+                bulletPoints = {
+                  [" Aplicação full stack com o objetivo de aprender todo o processo de criação de uma aplicação web, desde a concepção até o deploy.",
+                    "Foi criada uma API REST com Node.js e Express.js para fornecer os dados para o front-end, que foi desenvolvido com React. Os dados foram persistidos com o banco de dados MongoDB.",
+                  "Também foi desenvolvida uma autenticação, onde é necessário cadastrar um nome de usuário e senha para acessar o sistema.",
+                "É possível criar, editar e excluir tarefas, ordenar as tarefas por prioridade e ordem alfabética, e marcar uma tarefa como concluida. As tarefas ficam dividas em seções: Todas, Hoje, Amanhã, Atrasadas, Concluidas."]
+                }
+                items = {imagensTaskis}
+                website = {"https://taskis.herokuapp.com/"}
+                github = {"https://github.com/joaogabrielferr/taskis"}
+                msgAdicional = {"(O deploy foi feito no Heroku, o primeiro carregamento pode durar até 15 segundos)"} 
+              ></Projeto>  
 
-          {showNavbar === true ? (
-            <div id="nav">
-              <a href="#sobre">
-                <h1>SOBRE</h1>
-              </a>
-              &nbsp;&nbsp;
-              <a href="#skills">
-                <h1>SKILLS</h1>
-              </a>
-              &nbsp;&nbsp;
-              <a href="#projetos">
-                <h1>PROJETOS</h1>
-              </a>
-              &nbsp;&nbsp;
-              <a href="#contato">
-                <h1>CONTATO</h1>
-              </a>
-              &nbsp;&nbsp;
-            </div>
-          ) : (
-            ""
-          )}
-          <div id="container">
-            <div id="inner-container">
-              <div id="sobre" className="vertical-space-id"></div>
-              <div className="section reveal">
-                <h1 className="section-title">.Sobre</h1>
-                <p>
-                  Olá, me chamo João Gabriel Ferreira. Estou estudando Ciência
-                  da Computação no Instituto Federal de Educação, Ciência e
-                  Tecnologia do Norte de Minas Gerais. Comecei a me interessar
-                  programação através de desenvolvimento de jogos, utilizando
-                  engines como Unity e Godot. Depois que iniciei minha graduação
-                  passei a desenvolver projetos em C++ e Python tanto pessoais
-                  quanto para as disciplinas do curso. Após um tempo no curso,
-                  comecei a pesquisar e aprender sobre desenvolvimento web, onde
-                  aprendi Javascript. Desde então, ja utilizei várias
-                  tecnologias diferentes em projetos pessoas, como React e
-                  NodeJs.
-                  <br />
-                  Também gosto de programação competitiva, onde objetivo é
-                  resolver em maratonas de programação o maior número possível
-                  de problemas de programação e matemática dadas restrições
-                  específicas para cada problema.
-                </p>
+              <div className="vertical-5vh"></div>
 
-                <p className="social-sobre">
-                  <a
-                    href="https://github.com/joaogabrielferr"
-                    target={"_blank"}
-                  >
-                    <i className="fab fa-github"></i>
-                    &nbsp;github.com/joaogabrielferr
-                  </a>
-                </p>
-                <p className="social-sobre">
-                  <a
-                    href="https://www.linkedin.com/in/joaogabrielferr/"
-                    target={"_blank"}
-                  >
-                    <i className="fab fa-linkedin"></i>
-                    &nbsp;linkedin.com/in/joaogabrielferr
-                  </a>
-                </p>
-                <p className="social-sobre">
-                  <a href="mailto:joaogabrielferr@gmail.com">
-                    joaogabrielferr@gmail.com
-                  </a>
-                </p>
-                <br />
-                <p>
-                  <a href={pdf} target={"_blank"} id="curriculo">
-                    Visualizar Currículo
-                  </a>
-                </p>
-              </div>
-
-              {/*Troca seção*/}
-
-              <div className="vertical-space"></div>
-
-              <div className="section reveal" id="skills">
-                <h1 className="section-title">.Skills</h1>
-                <p>
-                  Linguagens de Programação
-                  <br />
-                  <br />
-                  <span className="skill">Javascript</span>{" "}
-                  <span className="skill">C++</span>{" "}
-                  <span className="skill">Python</span>
-                </p>
-                <p>&nbsp;</p>
-                <p>
-                  Desenvolvimento Web
-                  <br />
-                  <br />
-                  <span className="skill">HTML</span>{" "}
-                  <span className="skill">CSS</span>{" "}
-                  <span className="skill">API's REST</span>
-                </p>
-                <p>&nbsp;</p>
-                <p>
-                  
-                  Banco de Dados
-                  <br />
-                  <br />
-                  <span className="skill">SQL</span>{" "}
-                  <span className="skill">mySQL</span>
-                </p>
-
-                <div id="comp-mobile">
-                  <p>&nbsp;</p>
-                  Ciência da Computação
-                  <br />
-                  <br />
-                  <span className="skill">Projeto e Análise de Algoritmos</span>
-                  <br />
-                  <br />
-                  <span className="skill">Estruturas de Dados</span>{" "}
-                  <span className="skill">POO</span>
-                </div>
-
-                <div id="comp-desktop">
-                  <p>&nbsp;</p>
-                  Ciência da Computação
-                  <br />
-                  <br />
-                  <span className="skill">
-                    Projeto e Análise de Algoritmos
-                  </span>{" "}
-                  <span className="skill">Estruturas de Dados</span>{" "}
-                  <span className="skill">POO</span>
-                </div>
-
-                <p>&nbsp;</p>
-                <p>
-                  
-                  Outros
-                  <br />
-                  <br />
-                  <span className="skill">
-                    Conhecimento Acadêmico em Métodos Ágeis(SCRUM)
-                  </span>
-                </p>
-                <p>
-                  <br />
-                  <br />
-                  Também tenho familiaridade com
-                  <br />
-                  <br />
-                  <span className="skill">Java</span>{" "}
-                  <span className="skill">ReactJs</span>{" "}
-                  <span className="skill">Node.js</span>{" "}
-                  <span className="skill">Express.js</span>{" "}
-                  <span className="skill">MongoDB</span>{" "}
-                  <span className="skill">GIT</span>
-                </p>
-              </div>
-
-              <div className="vertical-space"></div>
-
-              <div className="section reveal" id="projetos">
-                <h1 className="section-title">.Projetos</h1>
-
-                <div className="projeto-container">
-                  <h2>
-                    {" "}
-                    <a
-                      className="subtitle"
-                      href="https://joaogabrielferr.github.io/data-structures-visualizer/"
-                      target={"_blank"}
-                    >
-                      Visualizador de Estruturas de Dados
-                    </a>
-                  </h2>
-                  <div className="texto">
-                    <p>
-                      Ferramenta online para visualizar as operações das
-                      principais estruturas de dados com o objetivo de facilitar
-                      o aprendizado delas. Todas as operações são visualizadas
-                      com animações, que foram criadas com Scalable Vector
-                      Graphics e CSS3. Foram implementadas Árvore de Busca
-                      Binária, Lista Encadiada e Pilha. Estão em desenvolvimento
-                      Fila e Heap.
-                    </p>
-
-                    <p style={{ color: "#69b9c4" }}>
-                      React &nbsp; &nbsp; &nbsp;HTML5 &nbsp; &nbsp; &nbsp;CSS3
-                      &nbsp; &nbsp; &nbsp;Scalable Vector Graphics
-                    </p>
-
-                    <p>
-                      <a
-                        href="https://joaogabrielferr.github.io/data-structures-visualizer/"
-                        className="subtitle"
-                        target={"_blank"}
-                      >
-                        Website <i className="fas fa-link"></i>
-                      </a>
-                    </p>
-                    <p>
-                      <a
-                        href="https://github.com/joaogabrielferr/data-structures-visualizer"
-                        className="subtitle"
-                        target={"_blank"}
-                      >
-                        Repositório no Github <i className="fab fa-github"></i>
-                      </a>
-                    </p>
-                  </div>
-
-                  <div className="img">
-                    <img src={imgds} alt="" />
-                  </div>
-                </div>
-
-                <div className="vertical-space-id"></div>
-
-                <div className="projeto-container">
-                  <h2>
-                    {" "}
-                    <a
-                      className="subtitle"
-                      href="https://taskis.herokuapp.com/"
-                      target={"_blank"}
-                    >
-                      Gerenciador de tarefas Full Stack
-                    </a>
-                  </h2>
-                  <div className="texto">
-                    <p>
-                      Aplicação full stack com o objetivo de aprender todo o
-                      processo de criação de uma aplicação web, desde a
-                      concepção até o deploy. Foi criada uma API REST com
-                      Node.js e Express.js para fornecer os dados para o
-                      front-end, que foi desenvolvido com React. Os dados foram
-                      persistidos com o banco de dados MongoDB. Também foi
-                      desenvolvida uma autenticação, onde é necessário cadastrar
-                      um nome de usuário e senha para acessar o sistema. É
-                      possível criar, editar e excluir tarefas, ordenar as
-                      tarefas por prioridade e ordem alfabética, e marcar uma
-                      tarefa como concluida. As tarefas ficam dividas em seções:
-                      Todas, Hoje, Amanhã, Atrasadas, Concluidas.
-                    </p>
-
-                    <p style={{ color: "#69b9c4" }}>
-                      React &nbsp; &nbsp; &nbsp;Node.js &nbsp; &nbsp;
-                      &nbsp;Express.js &nbsp; &nbsp; &nbsp;MongoDB
-                    </p>
-
-                    <p>
-                      <a
-                        href="https://taskis.herokuapp.com/"
-                        className="subtitle"
-                        target={"_blank"}
-                      >
-                        Website (o deploy foi feito no Heroku, o primeiro
-                        carregamento pode demorar até 15 segundos.){" "}
-                        <i className="fas fa-link"></i>
-                      </a>
-                    </p>
-                    <p>
-                      <a
-                        href="https://github.com/joaogabrielferr/taskis"
-                        className="subtitle"
-                        target={"_blank"}
-                      >
-                        Repositório no Github <i className="fab fa-github"></i>
-                      </a>
-                    </p>
-                  </div>
-
-                  <div className="img">
-                    <img src={taskis} alt="" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="vertical-space"></div>
-
-              <div className="section reveal" id="contato">
-                <h1 className="section-title">.Contato</h1>
-                <p> </p>
-                Entre em contato comigo por email e responderei o mais rápido
-                possível.
-                <p>{"    "}</p>
-                <a href="mailto:joaogabrielferr@gmail.com" id="diga-ola">
-                  Diga olá
-                </a>
-              </div>
-
-              <div className="vertical-space"></div>
+              <Projeto 
+                titulo = {"Aplicação Web para locação de Veículos"}
+                stack = {"ReactJs - Node.js - Express.js - MongoDB"}
+                bulletPoints = {
+                  [" Aplicação como trabalho final para a disciplina de Análise e Projeto de Sistemas na minha universidade.",
+                    "Devido a pandemia, a disciplina foi ministrada no formato EAD com duração de 3 meses, onde 2 meses foram reservados para a construção dos documentos referentes ao sistema. Por esse motivo algumas funcionalidades como o Chat não foram implementadas completamente.  ",
+                  "É possível se cadastrar, anunciar um veículo, gerenciar seus anuncios, realizar uma solicitação de aluguel de veículos e aceitar solicitações feitas para seus anuncios. O chat funciona parcialmente, através de chamadas a API, ao invés de troca de mensagens em tempo real.",
+                ]
+                }
+                items = {imagensLocoMoc}
+                website = {"https://locomoc.herokuapp.com/"}
+                github = {"https://github.com/joaogabrielferr/locomocClientV3"}
+                msgAdicional = {"(O deploy foi feito no Heroku, o primeiro carregamento pode durar até 15 segundos)"} 
+              ></Projeto>              
             </div>
           </div>
-          <div id="footer">João Gabriel Ferreira</div>
+          
+          <div style={{fontSize:"1vw"}}>João Gabriel Ferreira</div>
+
         </>
       )}
     </div>
