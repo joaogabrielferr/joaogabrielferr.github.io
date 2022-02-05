@@ -1,28 +1,29 @@
 import "./App.css";
 import { useEffect, useRef, useState } from "react";
-import pdf from "./Curriculo_JoaoGabrielFerreira.pdf";
-import bst from "./bstimage.PNG";
-import linkedlist from "./linkedlistimage.PNG";
-import stackimage from "./stackimage.PNG";
-import taskis from "./taskis.PNG";
-import taskis1 from "./taskis1.PNG";
-import taskis2 from "./taskis2.PNG";
-import taskis3 from "./taskis3.PNG";
-import taskis4 from "./taskis4.PNG";
-import taskis5 from "./taskis5.PNG";
-import locomoc1 from "./locomoc1.PNG";
-import locomoc2 from "./locomoc2.PNG";
-import locomoc3 from "./locomoc3.PNG";
+import bst from "./img/bstimage.PNG";
+import linkedlist from "./img/linkedlistimage.PNG";
+import stackimage from "./img/stackimage.PNG";
+import taskis from "./img/taskis.PNG";
+import taskis1 from "./img/taskis1.PNG";
+import taskis2 from "./img/taskis2.PNG";
+import taskis3 from "./img/taskis3.PNG";
+import taskis4 from "./img/taskis4.PNG";
+import taskis5 from "./img/taskis5.PNG";
+import locomoc1 from "./img/locomoc1.PNG";
+import locomoc2 from "./img/locomoc2.PNG";
+import locomoc3 from "./img/locomoc3.PNG";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import Projeto from "./Componentes/Projeto";
 import Greetings from "./Componentes/Greetings";
+import Skills from "./Componentes/Skills";
+import About from "./Componentes/About";
+import Contact from "./Componentes/Contact";
+import Header from "./Componentes/Header";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const ANIMATION_TIME = 1000;
-  const abre = "{";
-  const fecha = "}";
   const [showNavbar, setShowNavbar] = useState(false);
   const svg = useRef();
 
@@ -47,67 +48,52 @@ function App() {
   ];
 
   useEffect(() => {
-    svg.current.style.backgroundColor = "#111c5c";
-    svg.current.style.borderRadius = "0.3vw";
-    svg.current.style.width = "99vw";
-    svg.current.style.height = "99vh";
-    let textoroot = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "text"
-    );
-    textoroot.setAttributeNS(null, "x", `50`);
-    textoroot.setAttributeNS(null, "y", `45`);
-    textoroot.setAttributeNS(
-      null,
-      "style",
-      "text-anchor:middle; fill:#a8a8a8 ;font-size:0.3vw; font-weight:bold; font-family:Source Code Pro; dy=.3em"
-    );
-    textoroot.textContent = `{JG}`;
-    textoroot.setAttribute("id", "texto-svg");
+    // svg.current.style.backgroundColor = "#111c5c";
+    // svg.current.style.borderRadius = "0.3vw";
+    // svg.current.style.width = "99vw";
+    // svg.current.style.height = "99vh";
+    // let textoroot = document.createElementNS(
+    //   "http://www.w3.org/2000/svg",
+    //   "text"
+    // );
+    // textoroot.setAttributeNS(null, "x", `50`);
+    // textoroot.setAttributeNS(null, "y", `45`);
+    // textoroot.setAttributeNS(
+    //   null,
+    //   "style",
+    //   "text-anchor:middle; fill:#a8a8a8 ;font-size:0.3vw; font-weight:bold; font-family:Source Code Pro; dy=.3em"
+    // );
+    // textoroot.textContent = `{JG}`;
+    // textoroot.setAttribute("id", "texto-svg");
 
-    svg.current.appendChild(textoroot);
+    // svg.current.appendChild(textoroot);
 
-    setTimeout(() => {
-      setLoaded(true);
-    }, 1000);
+    // setTimeout(() => {
+    //   setLoaded(true);
+    // }, 1000);
   }, []);
 
   return (
     <div className="App">
-      {loaded === false ? (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          id="svg"
-          viewBox="0 0 100 100"
-          ref={svg}
-        ></svg>
-      ) : (
-        <>
-          <div id="header">
-            <div id="inner-header">
-              <h2>
-                {abre}JG{fecha}
-              </h2>
-              <p>joaogabrielferr@gmail.com</p>
-            </div>
-          </div>
+
+          <Header></Header>
 
           <Greetings></Greetings>
 
           <div id="projetos">
-            <div id="titulo">Projetos</div>
+            <div id="titulo"><i className="fas fa-tasks"></i> Projects <span className = "titulo-horizontal"></span> </div>
 
             <div className="vertical-1vh"></div>
 
             <div id="inner-projetos">
               <Projeto
-                titulo={"Visualizador de Estruturas de Dados"}
-                stack={"ReactJs - HTML5 - CSS3 - Scalable Vector Graphics"}
+                titulo={"Data Structures Visualizer"}
+                stack={[" ReactJs "," HTML5 "," CSS3 "," Scalable Vector Graphics "]}
                 bulletPoints={[
-                  " Ferramenta online para visualizar as operações das principais estruturas de dados com o objetivo de facilitar o aprendizado delas.",
-                  "O principal objetivo é visualizar como as operações modificam a estrutura de dados, mantendo suas propriedades.",
-                  "Todas as operações são visualizadas com animações, que foram criadas com Scalable Vector Graphics e CSS3. A aplicação foi criada com ReactJs.",
-                  "Foram implementadas Árvore de Busca Binária, Lista Encadiada e Pilha. Estão em desenvolvimento Fila e Heap.",
+                "Online tool to visualize the operations of the most important data structures with the goal of making it easier to understand them.",
+                "The main goal is to visualize how the operations modify their data structures, maintaining its properties.",
+                "All operations can be visualized with animations, that were made with Scalable Vector Graphics and CSS3. The application was built with React.",
+                "The following data structures were implemented: Binary Search Tree, Linked List and Stack. Visualization for Queue and Heap are still in development."
                 ]}
                 items={imagensVisualizador}
                 website={
@@ -121,45 +107,86 @@ function App() {
               <div className="vertical-5vh"></div>
 
               <Projeto
-                titulo={"Gerenciador de Tarefas Full Stack"}
-                stack={"ReactJs - Node.js - Express.js - MongoDB"}
+                titulo={"Full Stack Task Manager"}
+                stack={["ReactJs","Node.js","Express.js","MongoDB"]}
                 bulletPoints={[
-                  " Aplicação full stack com o objetivo de aprender todo o processo de criação de uma aplicação web, desde a concepção até o deploy.",
-                  "Foi criada uma API REST com Node.js e Express.js para fornecer os dados para o front-end, que foi desenvolvido com React. Os dados foram persistidos com o banco de dados MongoDB.",
-                  "Também foi desenvolvida uma autenticação, onde é necessário cadastrar um nome de usuário e senha para acessar o sistema.",
-                  "É possível criar, editar e excluir tarefas, ordenar as tarefas por prioridade e ordem alfabética, e marcar uma tarefa como concluida. As tarefas ficam dividas em seções: Todas, Hoje, Amanhã, Atrasadas, Concluidas.",
+                  "Full stack application that I made with the goal of learning the whole process of creation of a web app, from conception to deployment.",
+                  "An REST API was made with Node.js and Express.js to manage data and connect with the database. The data was persisted using MongoDB.",
+                  "The front-end was built with React.",
+                  "You can register and login, create, edit and delete tasks, sort them by priority and by alphabetical order, as well as mark a task as concluded. The task are organized in sections: All, Today, Tomorrow, Overdue and Concluded."
                 ]}
                 items={imagensTaskis}
                 website={"https://taskis.herokuapp.com/"}
                 github={"https://github.com/joaogabrielferr/taskis"}
                 msgAdicional={
-                  "(O deploy foi feito no Heroku, o primeiro carregamento pode durar até 15 segundos)"
+                  "(Deployment was made in Heroku, the first load can take up to 10 seconds.)"
                 }
               ></Projeto>
 
               <div className="vertical-5vh"></div>
 
               <Projeto
-                titulo={"Aplicação Web para locação de Veículos"}
-                stack={"ReactJs - Node.js - Express.js - MongoDB"}
+                titulo={"Full Stack Car Rental System"}
+                stack={["ReactJs","Node.js","Express.js","MongoDB"]}
                 bulletPoints={[
-                  " Aplicação como trabalho final para a disciplina de Análise e Projeto de Sistemas na minha universidade.",
-                  "Devido a pandemia, a disciplina foi ministrada no formato EAD com duração de 3 meses, onde 2 meses foram reservados para a construção dos documentos referentes ao sistema. Por esse motivo algumas funcionalidades como o Chat não foram implementadas completamente.  ",
-                  "É possível se cadastrar, anunciar um veículo, gerenciar seus anuncios, realizar uma solicitação de aluguel de veículos e aceitar solicitações feitas para seus anuncios. O chat funciona parcialmente, através de chamadas a API, ao invés de troca de mensagens em tempo real.",
+                  "Application built as the final project for the Analysis and Project of Systems course i took in my university.",
+                  "You can register, login, register a car to be rent, manage your cars, request a car rental and accept requests other users made for your car.",
+                  "The same stack of the task manager project was used in this one. The front-end was built with React, and the back-end with Node.js, Express.js and the data is persisted with MongoDB."
                 ]}
                 items={imagensLocoMoc}
                 website={"https://locomoc.herokuapp.com/"}
                 github={"https://github.com/joaogabrielferr/locomocClientV3"}
                 msgAdicional={
-                  "(O deploy foi feito no Heroku, o primeiro carregamento pode durar até 15 segundos)"
+                  "(Deployment was made in Heroku, the first load can take up to 10 seconds.)"
                 }
               ></Projeto>
             </div>
           </div>
 
-          <div style={{ fontSize: "1vw" }}>João Gabriel Ferreira</div>
-        </>
-      )}
+          <div className="vertical-5vh"></div>
+          <div id="skills"></div>
+          <Skills></Skills>
+
+          <div className="vertical-5vh"></div>
+          <div id="about"></div>
+          <About></About>
+
+          <div className="vertical-5vh"></div>
+          <div id="contact"></div>
+          <Contact></Contact>
+
+          <div className="vertical-5vh"></div>
+              
+          <div className="float-navbar">
+            <div className="float-navbar-items">
+              <div className = "nav-bar-item">
+              <a href="https://github.com/joaogabrielferr" target = {"_blank"}>
+              <i className="fab fa-github icon"></i><br/>
+              Github
+              </a>
+            </div>
+
+            <div className="nav-bar-item">
+              <a href="https://www.linkedin.com/in/joaogabrielferr" target = {"_blank"}>
+              <i className="fab fa-linkedin-in icon"></i><br/>
+              Linkedin
+              </a>              
+            </div>
+
+            <div className="nav-bar-item">
+              <a href="mailto:joaogabrielferr@gmail.com" target = {"_blank"}>
+              <i className="far fa-envelope icon"></i><br/>
+              Email
+              </a>
+            </div>
+            </div>
+  
+            <div className="vertical-line">
+              
+            </div>
+          </div>
+
+          <div style={{ fontSize: "1em" }}>João Gabriel Ferreira</div>
     </div>
   );
 }

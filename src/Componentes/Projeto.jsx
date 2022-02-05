@@ -7,7 +7,7 @@ const handleDragStart = (e) => e.preventDefault();
 
 const Projeto = ({ titulo, stack, bulletPoints, items, website, github,msgAdicional }) => {
   return (
-    <div>
+    <div className = "Projeto">
       <div className="projeto">
         <div className="titulo-projeto">
           <a href={website} target={"_blank"}>
@@ -17,23 +17,31 @@ const Projeto = ({ titulo, stack, bulletPoints, items, website, github,msgAdicio
 
         <div className="content">
           <div className="info">
-            <div id="stack">{stack}</div>
+            <div id="stack">
+
+              { stack.map( (item,index) => (<div key = {index}><p>{item}</p> &nbsp;&nbsp;  </div>)  )  }
+
+            </div>
 
             <ul>
               {bulletPoints.map((item, index) => (
-                <li>{item}</li>
+                <div key = {index}>
+                  <li>{item}</li>
+                  <br/>
+                </div>
+                
               ))}
             </ul>
 
             <div>
               {" "}
               <a href={website} target={"_blank"} className="external">
-                Website <span style={{fontSize:"1vw"}}>{msgAdicional}</span> <i className="fas fa-link"></i>
+                Website <span style={{fontSize:"1em"}}>{msgAdicional}</span> <i className="fas fa-link"></i>
               </a>
             </div>
             <div>
               <a href={github} target={"_blank"} className="external">
-                Repositório no Github <i className="fab fa-github"></i>
+                Repository on Github <i className="fab fa-github"></i>
               </a>
             </div>
           </div>
@@ -46,14 +54,14 @@ const Projeto = ({ titulo, stack, bulletPoints, items, website, github,msgAdicio
               renderPrevButton={() => {
                 return (
                   <p className="nextimg">
-                    Anterior <i className="fas fa-arrow-circle-left"></i>
+                    Prev <i className="fas fa-arrow-circle-left"></i>
                   </p>
                 );
               }}
               renderNextButton={() => {
                 return (
                   <p className="nextimg">
-                    Próxima <i className="fas fa-arrow-alt-circle-right"></i>
+                    Next <i className="fas fa-arrow-alt-circle-right"></i>
                   </p>
                 );
               }}

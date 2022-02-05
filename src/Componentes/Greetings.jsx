@@ -1,87 +1,51 @@
-import React from 'react'
-import pdf from "../Curriculo_JoaoGabrielFerreira.pdf";
+import React from "react";
+import { useEffect, useState } from "react";
+import CV_PTBR from '../Curriculo_JoaoGabrielFerreira.pdf';
+import CV_ENG from '../Resume_JoaoGabrielFerreira.pdf';
 
 const Greetings = () => {
-    return (
-        <div>
-          <div id="hello">
-            <div id="sociais">
-              <div id="icon">
-                <a
-                  href="https://www.linkedin.com/in/joaogabrielferr/"
-                  target={"_blank"}
-                >
-                  <i className="fab fa-linkedin-in"></i>
-                </a>
-              </div>
-              <br />
-              <div id="icon">
-                <a href="https://github.com/joaogabrielferr/" target={"_blank"}>
-                  <i className="fab fa-github"></i>
-                </a>
-              </div>
-              <br />
-              <div id="icon">
-                <a href="mailto:joaogabrielferr@gmail.com" target={"_blank"}>
-                  <i className="far fa-envelope"></i>
-                </a>
-              </div>
-            </div>
 
-            <div id="greeting">
-              <div id="nome">
-                <div>
-                  <p> &nbsp;Olá, meu nome é</p>
-                </div>
-                <div>
-                  <h1>
-                    João Gabriel
-                    <span style={{ fontFamily: "Open Sans" }}>,</span>
-                  </h1>
-                </div>
-                <div id="subtitle-1">
-                  <h3>Desenvolvedor de software e</h3>
-                </div>
-                <div id="subtitle-2">
-                  <h3>acadêmico de Ciência da Computação.</h3>
-                </div>
-                <div id="sobre">
-                  <p>
-                    <br />
-                    Me interessei por desenvolvimento de software desde que
-                    iniciei minha graduação. Desde então, já desenvolvi diversos
-                    projetos, tanto pessoais quanto para o curso utilizando
-                    linguagens como Python, C++, Javascript e Java. Atualmente
-                    tenho me interessado muito em desenvolvimento web,
-                    desenvolvendo alguns projetos utilizando tecnologias como
-                    ReactJs e NodeJs. Além de desenvolvimento, também gosto de
-                    programação competitiva e machine learning.
-                  </p>
-                </div>
-              </div>
+  const [hours,setHours] = useState("");
 
-              <div id="botoes">
-                <div className="botao" id="curriculo">
-                  <a href={pdf} target={"_blank"}>
-                    Currículo
-                  </a>
-                </div>
-                <div className="botao" id="projetos-2">
-                  <a href="#projetos">
-                    Projetos <i className="fas fa-arrow-down seta"></i>
-                  </a>
-                </div>
-                <div className="botao" id="contato">
-                  <a id="email">
-                    <i className="far fa-envelope"></i>{" "}
-                    joaogabrielferr@gmail.com
-                  </a>
-                </div>
-              </div>
-            </div>
+  useEffect(()=>{
+
+      const date = new Date();
+      const h = date.getHours();
+
+      if(h < 12)setHours("morning");
+      else if(h < 18)setHours("afternoon");
+      else setHours("evening");
+
+  }
+  ,[]);
+
+  return (
+    <div className="greetings">
+      <div className="greetings-main">
+        <div className="greetings-main-wrapper">
+          <div className="name">Good {hours}, my name is <span className="name-span">João Gabriel</span>,</div>
+          <div className="subtitle">Software Developer {"&&"}</div>
+          <div className="subtitle">Computer Science Student.</div>
+          <div className="about">
+            Since I got into software development I have developed many projects, mainly personal ones
+            , using technologies such as &nbsp;
+            <span className="tag">Javascript</span> ,
+            &nbsp;
+            <span className="tag">React</span> , &nbsp;
+            <span className="tag">Node.js</span> , &nbsp;
+            <span className="tag">Python</span> , &nbsp;
+            <span className="tag">Java</span> &nbsp;
+            and many more. Besides software development I also like competitive programming and machine learning. See below the 
+            projects i've made so far.
+          </div>
+          <div className="cv-buttons">
+            <a className="button" href={CV_PTBR} target={"_blank"}><i className="far fa-file"></i>&nbsp;&nbsp; CV (Portuguese)</a>
+            <a className="button" href = {CV_ENG} target = {"_blank"}><i className="far fa-file"></i>&nbsp;&nbsp; CV (English)</a>
           </div>
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
-export default Greetings
+export default Greetings;
